@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kulüp Lisans Başvuru Formu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #signature {
+            border: 1px solid #ccc;
+            width: 250px;
+            height: 100px;
+        }
+        #guardianSignature {
+            border: 1px solid #ccc;
+            width: 250px;
+            height: 100px;
+        }
+        body {
+            background-image: url('18012022221156-90314-65935.png');
+            background-repeat: repeat; 
+            background-size: 250px 250px;
+            background-color: rgba(0,0, 0, 0.03)
+        }
+        .card-body {
+            background-color: rgba(0,0, 0, 0.03)
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+        <h2 class="text-center">URFADOSK Lisans Kayıt Formu - <span id="currentDate"></span></h2>
+        </div>
+        <div class=" bg-info text-white text-center">
+            <h5 class="text-center">Bu formu doldurduktan sonra PDF çıktısını alıp, nüfus cüzdanı fotokopisi ve 3 adet vesikalık fotoğraf ile kulübümüze teslim edebilirsiniz </h5>
+            </div>
+        <div class="card-body">
+        <form id="form">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="name" class="form-label">Adı Soyadı*</label>
+                    <input type="text" class="form-control" id="name" name="name" value="John Doe" required placeholder="Adı Soyadı">
+                </div>
+                <div class="col-md-4">
+                    <label for="tc" class="form-label">T.C. Kimlik No*</label>
+                    <input type="text" class="form-control" id="tc" name="tc" value="4324324" required >
+                </div>
+                <br>
+                <div class="col-md-4">
+                    <label for="fatherName" class="form-label">Baba Adı</label>
+                    <input type="text" class="form-control" id="fatherName" name="fatherName" value="Joe Doe" placeholder="Baba Adı">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="motherName" class="form-label">Ana Adı</label>
+                    <input type="text" class="form-control" id="motherName" name="motherName" value="Jane Doe" placeholder="Ana Adı">
+                </div>
+                <div class="col-md-4">
+                    <label for="birthPlace" class="form-label">Doğum Yeri*</label>
+                    <input type="text" class="form-control" id="birthPlace" name="birthPlace" value="Şanlıurfa" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="birthDate" class="form-label">Doğum Tarihi*</label>
+                    <input type="date" class="form-control" id="birthDate" name="birthDate" value="2023-10-01" required>
+                </div>                
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="bloodType" class="form-label">Kan Grubu*</label>
+                    <select class="form-select" id="bloodType" name="bloodType">
+                        <option value="0 Rh(+)" selected>0 Rh(+)</option>
+                        <option value="0 Rh(-)">0 Rh(-)</option>
+                        <option value="A Rh(+)">A Rh(+)</option>
+                        <option value="A Rh(-)">A Rh(-)</option>
+                        <option value="B Rh(+)">B Rh(+)</option>
+                        <option value="B Rh(-)">B Rh(-)</option>
+                        <option value="AB Rh(+)">AB Rh(+)</option>
+                        <option value="AB Rh(-)">AB Rh(-)</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="email" class="form-label">E-posta</label>
+                    <input type="email" class="form-control" id="email" name="email" value="john.doe@example.com">
+                </div>
+                <div class="col-md-4">
+                    <label for="phone" class="form-label">Cep Telefonu*</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" value="+905551234567" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="job" class="form-label">Mesleği</label>
+                    <input type="text" class="form-control" id="job" name="job" value="Mühendis">
+                </div>
+                <div class="col-md-4">
+                    <label for="homeAddress" class="form-label">Ev Adresi*</label>
+                    <input type="text" class="form-control" id="homeAddress" name="homeAddress" value="Bağdat Cad. No:12, Kadıköy, İstanbul" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="workAddress" class="form-label">İş Adresi</label>
+                    <input type="text" class="form-control" id="workAddress" name="workAddress" value="Bağdat Cad. No:12, Şişli, İstanbul">
+                </div>
+            </div>
+            <div class="row mb-3 g-3">
+                <div class="col-md-4 justify-content-center align-items-center">
+                    <h5 class="d-flex align-items-center">
+                        Sporcu İmzası*
+                        <button type="button" class="btn ms-2" id="clearSignature" title="İmza Sil">
+                            <img src="delete-close-svgrepo-com.svg" alt="İmza Sil" style="width: 20px; height: 20px;">
+                        </button>
+                    </h5>
+                    <canvas id="signature" class="border border-secondary"></canvas><br>
+                </div>
+                <div id="guardianFields" style="display: none;" class="col-md-4 justify-content-center align-items-center">
+                    <label for="guardianName" class="form-label">Veli Adı Soyadı*</label>
+                    <input type="text" class="form-control" id="guardianName" name="guardianName">
+            
+                    <label for="guardianTc" class="form-label">Veli TC Kimlik No*</label>
+                    <input type="text" id="guardianTc" name="guardianTc" class="form-control">
+            
+                    <h5 class="d-flex align-items-center">
+                        Veli İmzası*
+                        <button type="button" class="btn ms-2" id="clearGuardianSignature" title="İmza Sil">
+                            <img src="delete-close-svgrepo-com.svg" alt="İmza Sil" style="width: 20px; height: 20px;">
+                        </button>
+                    </h5>
+                    <canvas id="guardianSignature" class="border border-secondary"></canvas>
+                </div>
+                
+                <div class="col-md-4 d-flex justify-content-center align-items-end">
+                    <button type="submit" class="btn btn-primary">PDF'e Bilgileri Yerleştir ve Görüntüle</button>
+                </div>
+            </div>            
+        </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</body>
+</html>
